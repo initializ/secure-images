@@ -54,11 +54,7 @@ jobs:
       - name: Sign the images
         run: |
           cosign sign \
-            public.ecr.aws/t4s8c0c3/${{ inputs.image }}:latest
-        env:
-          COSIGN_EXPERIMENTAL: 1
+            --yes public.ecr.aws/t4s8c0c3/${{ inputs.image }}:latest
 
       - name: Verify the pushed tags
         run: cosign verify public.ecr.aws/t4s8c0c3/${{ inputs.image }}:latest
-        env:
-          COSIGN_EXPERIMENTAL: 1
