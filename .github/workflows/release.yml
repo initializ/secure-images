@@ -1,0 +1,50 @@
+on:
+  workflow_dispatch:
+    inputs:
+      image:
+        description: 'Image to Release'
+        required: true
+        type: string
+jobs:
+  image-release:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: .
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v3
+
+      - name: Configure AWS credentials from AWS account
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ secrets.AWS_PUBLICECR_ROLE }}
+          aws-region: ${{ secrets.AWS_PUBLICECR_REGION }}
+          role-session-name: GitHub-OIDC-SECURE-IMAGES
+          
+      - name: Login to Amazon ECR Public
+        id: login-ecr-public
+        uses: aws-actions/amazon-ecr-login@v2
+        with:
+          registry-type: public
+
+      - name: Create & Push Minimal Image using apko
+        id: apko
+        uses: distroless/actions/apko-publish@main
+        with:
+          config: images/${{ inputs.image }}/apko.yaml
+          tag: public.ecr.aws/t4s8c0c3/${{ inputs.image }}:latest
+
+      - uses: sigstore/cosign-installer@main
+      - name: Sign the images
+        run: |
+          cosign sign \
+            public.ecr.aws/t4s8c0c3/${{ inputs.image }}:latest
+        env:
+          COSIGN_EXPERIMENTAL: 1
+
+      - name: Verify the pushed tags
+        run: cosign verify public.ecr.aws/t4s8c0c3/${{ inputs.image }}:latest
+        env:
+          COSIGN_EXPERIMENTAL: 1
