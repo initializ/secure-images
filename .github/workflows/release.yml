@@ -35,10 +35,20 @@ jobs:
 
       - name: Create & Push Minimal Image using apko
         id: apko
-        uses: distroless/actions/apko-publish@main
+        uses: distroless/actions/apko-build@main
         with:
           config: images/${{ inputs.image }}/apko.yaml
           tag: public.ecr.aws/t4s8c0c3/${{ inputs.image }}:latest
+
+      - name: Tag, and push docker image to Amazon ECR Public
+        env:
+          REGISTRY: ${{ steps.login-ecr-public.outputs.registry }}
+          REGISTRY_ALIAS: t4s8c0c3
+          REPOSITORY: ${{ inputs.image }}
+        run: |
+          docker load < output.tar
+          docker tag $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:latest-amd64 $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:latest
+          docker push $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:latest
 
       - uses: sigstore/cosign-installer@11086d25041f77fe8fe7b9ea4e48e3b9192b8f19 # v3.1.2
       - name: Sign the images
