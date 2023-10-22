@@ -15,7 +15,7 @@ docker pull public.ecr.aws/t4s8c0c3/kubectl:latest
 
 ### Software and Tools
 
-These images contain stand-alone software, such as databases and web servers, and tools like `kubectl` and `aws-cli`.
+These images contain stand-alone software, databases, web servers, and tools like `kubectl` and `aws-cli`.
 
 Because our images are constantly rebuilt with the latest sources and include the absolute minimum of dependencies, they typically have significantly fewer vulnerabilities than equivalent images.
 
@@ -29,7 +29,12 @@ For example:
 All Initializ Secure Images are signed using [Sigstore](https://www.sigstore.dev/), and you can check the signature using [`cosign`](https://docs.sigstore.dev/cosign/overview). For our `kubectl` image example, you can run the following:
 
 ```
-cosign verify public.ecr.aws/t4s8c0c3/kubectl --certificate-oidc-issuer https://token.actions.githubusercontent.com --certificate-identity https://github.com/initializ/secure-images/.github/workflows/release.yml@refs/heads/main | jq 
+
+cosign verify public.ecr.aws/t4s8c0c3/kubectl \
+ --certificate-oidc-issuer https://token.actions.githubusercontent.com \
+ --certificate-identity https://github.com/initializ/secure-images/.github/workflows/release.yml@refs/heads/main \
+ | jq
+
 ```
 
 Your output will make sure that the cosign claims are validated.
@@ -39,7 +44,15 @@ Your output will make sure that the cosign claims are validated.
 All Initializ Secure Images come with a [Software Bill Of Materials (SBOM)](https://www.initializ.ai/blog/software-bill-of-materials-sbom-a-comprehensive-guide) generated at build-time. The SBOM can be downloaded using the [`cosign`](https://docs.sigstore.dev/cosign/overview) tool e.g.:
 
 ```
-$ cosign download attestation --predicate-type https://spdx.dev/Document public.ecr.aws/t4s8c0c3/kubectl | jq -r .payload | base64 -d | jq
+
+cosign download attestation \
+ --predicate-type https://spdx.dev/Document \
+ public.ecr.aws/t4s8c0c3/kubectl | jq -r .payload | base64 -d | jq
+
+```
+You will see the following result:
+
+```
 {
 {
   "_type": "https://in-toto.io/Statement/v0.1",
