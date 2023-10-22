@@ -62,3 +62,8 @@ jobs:
           public.ecr.aws/t4s8c0c3/${{ inputs.image }}:latest \
           --certificate-identity https://github.com/initializ/secure-images/.github/workflows/release.yml@refs/heads/main \
           --certificate-oidc-issuer https://token.actions.githubusercontent.com | jq
+
+      - name: Attest SBOM
+        run: |
+          cosign attest \
+            --yes --predicate sbom-x86_64.spdx.json --type spdxjson public.ecr.aws/t4s8c0c3/${{ inputs.image }}:latest
