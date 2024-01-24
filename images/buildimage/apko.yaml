@@ -4,11 +4,8 @@ contents:
  repositories:
     - https://packages.wolfi.dev/os
  packages:
-    - ca-certificates
     - ca-certificates-bundle
-    - tzdata
-    - wolfi-baselayout
-    - kots-symlink-compat
+    - wolfi-base
 
 accounts:
  groups:
@@ -26,6 +23,9 @@ accounts:
 environment:
  CNB_USER_ID: 1000
  CNB_GROUP_ID: 1000
+
+entrypoint:
+  command: /bin/sh -l
 
 archs:
  - x86_64
