@@ -4,28 +4,45 @@ contents:
   repositories:
     - https://packages.wolfi.dev/os
   packages:
-    - ca-certificates
     - ca-certificates-bundle
-    - tzdata
+    - wolfi-base
     - wolfi-baselayout
-    - kots-symlink-compat
+    - tzdata
+    - buildkitd
+    - curl
+    - git
+    - jq
+    - libexpat1
+    - gmp
+    - libssl3
+    - openssl-dev
+    - yaml
+    - zlib-dev 
+    - openssl
+    - pkgconf
+    - xz 
+    - libstdc++
 
 accounts:
-  groups:
+ groups:
     - groupname: cnb
       gid: 1000
     - groupname: nonroot
       gid: 65532
-  users:
+ users:
     - username: cnb
       uid: 1000
     - username: nonroot
       uid: 65532
-  run-as: cnb
+ run-as: cnb
 
 environment:
-  CNB_USER_ID: 1000
-  CNB_GROUP_ID: 1000
+ CNB_USER_ID: 1000
+ CNB_GROUP_ID: 1000
+
+entrypoint:
+  command: /bin/sh -l
 
 archs:
-  - x86_64
+ - x86_64
+

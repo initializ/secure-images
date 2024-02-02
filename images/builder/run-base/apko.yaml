@@ -1,11 +1,17 @@
 contents:
- keyring:
+  keyring:
     - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
- repositories:
+  repositories:
     - https://packages.wolfi.dev/os
- packages:
+  packages:
     - ca-certificates-bundle
     - wolfi-base
+    - libexpat1
+    - libssl3
+    - yaml
+    - openssl
+    - tzdata
+    - zlib
 
 accounts:
  groups:
@@ -29,3 +35,4 @@ entrypoint:
 
 archs:
  - x86_64
+
