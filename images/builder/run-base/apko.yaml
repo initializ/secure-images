@@ -12,6 +12,7 @@ contents:
     - openssl
     - tzdata
     - zlib
+    - libstdc++
 
 accounts:
  groups:
