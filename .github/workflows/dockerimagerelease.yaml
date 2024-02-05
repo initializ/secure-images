@@ -76,4 +76,4 @@ jobs:
 
       - name: Push SBOM to ECR
         run: |
-          aws ecr put-image --repository-name builder/build-image-labeled --image-tag latest --image-manifest file://sbom-x86_64.spdx.json
+          aws ecr put-image --repository-name public.ecr.aws/t4s8c0c3/${{ inputs.image }} --image-tag latest --image-manifest file://sbom-x86_64.spdx.json
