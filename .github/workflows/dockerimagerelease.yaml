@@ -47,6 +47,15 @@ jobs:
           docker tag $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:latest $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:latest
           docker push $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:latest
 
+      - name: Set up Anchore CLI
+        run: |
+          # Install Anchore CLI
+          curl -s https://ci-tools.anchore.io/inline_install.sh | bash -s -- -p $(pwd)
+
+          # Add Anchore CLI to the PATH
+          export PATH=$PATH:$(pwd)/bin
+        shell: bash
+
       - name: Generate SBOM
         uses: anchore/sbom-action@v0
         with:
