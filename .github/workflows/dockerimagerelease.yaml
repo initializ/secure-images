@@ -56,6 +56,12 @@ jobs:
           artifact-name: sbom-x86_64.spdx.json
         id: anchore-sbom
 
+      - name: Upload SBOM
+        uses: actions/upload-artifact@v2
+        with:
+          name: sbom-x86_64
+          path: sbom-x86_64.spdx.json
+
       - uses: sigstore/cosign-installer@11086d25041f77fe8fe7b9ea4e48e3b9192b8f19 # v3.1.2
       - name: Sign the images
         run: |
@@ -72,4 +78,4 @@ jobs:
       - name: Attest SBOM
         run: |
           cosign attest \
-            --yes --predicate /tmp/sbom-action-8pfowc/sbom-x86_64.spdx.json --type spdxjson public.ecr.aws/t4s8c0c3/${{ inputs.image }}:latest
+            --yes --predicate sbom-x86_64.spdx.json --type spdxjson public.ecr.aws/t4s8c0c3/${{ inputs.image }}:latest
