@@ -48,12 +48,12 @@ jobs:
           docker tag $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:latest $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:latest
           docker push $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:latest
 
-    - name: Generate SBOM
-        uses: anchore/sbom-action@v0.15.8
-        with:
-          image: public.ecr.aws/t4s8c0c3/${{ inputs.image }}:latest
-          format: cyclonedx
-        id: anchore-sbom
+      - name: Generate SBOM
+          uses: anchore/sbom-action@v0.15.8
+          with:
+            image: public.ecr.aws/t4s8c0c3/${{ inputs.image }}:latest
+            format: cyclonedx
+          id: anchore-sbom
 
       - uses: sigstore/cosign-installer@11086d25041f77fe8fe7b9ea4e48e3b9192b8f19 # v3.1.2
       - name: Sign the images
