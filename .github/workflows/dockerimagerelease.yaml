@@ -72,4 +72,4 @@ jobs:
       - name: Attest SBOM
         run: |
           cosign attest \
-            --yes --predicate sbom-x86_64.spdx.json --type spdxjson public.ecr.aws/t4s8c0c3/${{ inputs.image }}:latest
+            --yes --predicate /tmp/sbom-action-8pfowc/sbom-x86_64.spdx.json --type spdxjson public.ecr.aws/t4s8c0c3/${{ inputs.image }}:latest
