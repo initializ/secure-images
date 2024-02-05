@@ -53,6 +53,7 @@ jobs:
         with:
           image: public.ecr.aws/t4s8c0c3/${{ inputs.image }}:latest
           format: spdx
+          artifact-name: sbom-x86_64.spdx.json
         id: anchore-sbom
 
       - uses: sigstore/cosign-installer@11086d25041f77fe8fe7b9ea4e48e3b9192b8f19 # v3.1.2
