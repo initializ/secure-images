@@ -81,5 +81,5 @@ jobs:
           REPOSITORY: ${{ inputs.image }}
         run: |
 
-          repo_name="$REGISTRY/$REGISTRY_ALIAS/$REPOSITORY"
+          repo_name="$REGISTRY_ALIAS/$REPOSITORY"
           aws ecr put-image --repository-name $repo_name --image-tag latest --image-manifest file://sbom-x86_64.spdx.json
