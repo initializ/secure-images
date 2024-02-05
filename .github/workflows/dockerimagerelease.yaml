@@ -74,12 +74,6 @@ jobs:
 
       - name: Attest SBOM
         run: |
-          mkdir -p sbom-directory
           cosign attest \
-            --yes \
-            --predicate sbom-directory/sbom-x86_64.spdx.json \
-            --type spdxjson \
-            public.ecr.aws/t4s8c0c3/builder/build-image-labeled:latest
-        env:
-          COSIGN_EXPERIMENTAL: 1
-          ANCHORE_SBOM_ACTION_PRIOR_ARTIFACT: sbom-x86_64.spdx.json
+            --yes --predicate sbom-x86_64.spdx.json --type spdxjson public.ecr.aws/t4s8c0c3/${{ inputs.image }}:latest
+
