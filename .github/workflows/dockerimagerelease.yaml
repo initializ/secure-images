@@ -75,5 +75,11 @@ jobs:
           --certificate-oidc-issuer https://token.actions.githubusercontent.com | jq
 
       - name: Push SBOM to ECR
+        env:
+          REGISTRY: ${{ steps.login-ecr-public.outputs.registry }}
+          REGISTRY_ALIAS: t4s8c0c3
+          REPOSITORY: ${{ inputs.image }}
         run: |
-          aws ecr put-image --repository-name public.ecr.aws/t4s8c0c3/${{ inputs.image }} --image-tag latest --image-manifest file://sbom-x86_64.spdx.json
+
+          repo_name="$REGISTRY/$REGISTRY_ALIAS/$REPOSITORY"
+          aws ecr put-image --repository-name $repo_name --image-tag latest --image-manifest file://sbom-x86_64.spdx.json
