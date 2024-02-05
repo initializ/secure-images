@@ -71,6 +71,4 @@ jobs:
       - name: Attest SBOM
         run: |
           cosign attest \
-            --yes --predicate sbom-x86_64.spdx.json --type spdxjson public.ecr.aws/t4s8c0c3/${{ inputs.image }}:latest \
-            --certificate-identity https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }} \
-            --certificate-oidc-issuer https://token.actions.githubusercontent.com | jq
+            --yes --predicate sbom-x86_64.spdx.json --type spdxjson public.ecr.aws/t4s8c0c3/${{ inputs.image }}:latest
