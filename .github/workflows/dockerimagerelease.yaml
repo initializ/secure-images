@@ -76,10 +76,18 @@ jobs:
           --certificate-identity https://github.com/initializ/secure-images/.github/workflows/dockerimagerelease.yaml@refs/heads/main \
           --certificate-oidc-issuer https://token.actions.githubusercontent.com | jq
 
+      - name: Get digest value
+        id: digest
+        run: |
+          digest=$(cosign inspect-manifest public.ecr.aws/t4s8c0c3/${{ inputs.image }}:latest | jq -r '.manifest.config.digest')
+          echo "digest=${{ digest }}" >> $GITHUB_ENV
+
       - name: Attest SBOM
         run: |
           cosign attest \
             --yes \
             --predicate sbom-x86_64.spdx.json \
             --type spdxjson \
-            public.ecr.aws/t4s8c0c3/builder/build-image-labeled@$digest
+            public.ecr.aws/t4s8c0c3/${{ inputs.image }}:latest@${{ env.digest }}
+        env:
+          ANCHORE_SBOM_ACTION_PRIOR_ARTIFACT: sbom-x86_64.spdx.json
