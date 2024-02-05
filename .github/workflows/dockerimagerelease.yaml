@@ -46,7 +46,7 @@ jobs:
           REGISTRY_ALIAS: t4s8c0c3
           REPOSITORY: ${{ inputs.image }}
         run: |
-          docker tag $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:latest
+          docker tag $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:latest $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:latest
           docker push $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:latest
 
       - uses: sigstore/cosign-installer@11086d25041f77fe8fe7b9ea4e48e3b9192b8f19 # v3.1.2
