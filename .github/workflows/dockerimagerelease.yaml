@@ -57,7 +57,7 @@ jobs:
         run: | 
           cosign verify \
           public.ecr.aws/t4s8c0c3/${{ inputs.image }}:latest \
-          --certificate-identity https://github.com/initializ/secure-images/.github/workflows/release.yml@refs/heads/main \
+          --certificate-identity https://github.com/initializ/secure-images/.github/workflows/dockerimagerelease.yml@refs/heads/main \
           --certificate-oidc-issuer https://token.actions.githubusercontent.com | jq
 
 
@@ -78,4 +78,8 @@ jobs:
 
       - name: Push SBOM to ECR
         run: |
+          # Install AWS CLI
+          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          unzip awscliv2.zip
+          sudo ./aws/install
           aws ecr put-image --repository-name ${{ inputs.image }} --image-tag latest --image-manifest "$(cat sbom-x86_64.spdx.json)"
