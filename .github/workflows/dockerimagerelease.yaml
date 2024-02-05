@@ -47,14 +47,19 @@ jobs:
           docker tag $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:latest $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:latest
           docker push $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:latest
 
-      - name: Set up Anchore CLI
+      - uses: sigstore/cosign-installer@11086d25041f77fe8fe7b9ea4e48e3b9192b8f19 # v3.1.2
+      - name: Sign the images
         run: |
-          # Install Anchore CLI
-          curl -s https://ci-tools.anchore.io/inline_install.sh | bash -s -- -p $(pwd)
+          cosign sign \
+            --yes public.ecr.aws/t4s8c0c3/${{ inputs.image }}:latest
 
-          # Add Anchore CLI to the PATH
-          export PATH=$PATH:$(pwd)/bin
-        shell: bash
+      - name: Verify the pushed tags
+        run: | 
+          cosign verify \
+          public.ecr.aws/t4s8c0c3/${{ inputs.image }}:latest \
+          --certificate-identity https://github.com/initializ/secure-images/.github/workflows/release.yml@refs/heads/main \
+          --certificate-oidc-issuer https://token.actions.githubusercontent.com | jq
+
 
       - name: Generate SBOM
         uses: anchore/sbom-action@v0
@@ -71,6 +76,6 @@ jobs:
           name: sbom-x86_64
           path: sbom-x86_64.spdx.json
 
-      - name: Attest SBOM using Anchore CLI
+      - name: Push SBOM to ECR
         run: |
-          anchore-cli image attest public.ecr.aws/t4s8c0c3/${{ inputs.image }}:latest sbom-x86_64.spdx.json
+          aws ecr put-image --repository-name ${{ inputs.image }} --image-tag latest --image-manifest "$(cat sbom-x86_64.spdx.json)"
