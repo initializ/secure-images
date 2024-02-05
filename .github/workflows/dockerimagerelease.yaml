@@ -80,7 +80,9 @@ jobs:
         id: digest
         run: |
           digest=$(cosign inspect-manifest public.ecr.aws/t4s8c0c3/${{ inputs.image }}:latest | jq -r '.manifest.config.digest')
-          echo "digest=${{ digest }}" >> $GITHUB_ENV
+          echo "digest=${{ digest }}" >> $GITHUB_OUTPUT
+        outputs:
+          digest: ${{ steps.digest.outputs.digest }}
 
       - name: Attest SBOM
         run: |
