@@ -72,8 +72,12 @@ jobs:
           --certificate-identity https://github.com/initializ/secure-images/.github/workflows/dockerimagerelease.yaml@refs/heads/main \
           --certificate-oidc-issuer https://token.actions.githubusercontent.com | jq
 
+      - name: Get Digest of the image
+        id: get-digest
+        run: |
+          digest=$(docker inspect --format '{{index .RepoDigests 0}}' images/${{ inputs.image }}:latest)
+          echo "::set-output name=digest::${digest}"
       - name: Attest SBOM
         run: |
           cosign attest \
-            --yes --predicate sbom-x86_64.spdx.json --type spdxjson public.ecr.aws/t4s8c0c3/${{ inputs.image }}:latest
-
+            --yes --predicate sbom-x86_64.spdx.json --type spdxjson ${{ steps.get-digest.outputs.digest }}
