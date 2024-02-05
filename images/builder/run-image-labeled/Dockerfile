@@ -2,7 +2,7 @@
 
 # Define the base image
 
-FROM public.ecr.aws/initializ/builder/build-base:latest
+FROM public.ecr.aws/initializ/builder/run-base:latest
 
 # Switch to the non-root user
 USER root
