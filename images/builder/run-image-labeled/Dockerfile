@@ -1,4 +1,4 @@
-#build-base image
+#run-base image
 
 # Define the base image
 
@@ -8,7 +8,7 @@ FROM public.ecr.aws/initializ/builder/run-base:latest
 USER root
 
 # Update package database and install dependencies
-RUN apk update && apk add ca-certificates-bundle wolfi-base libexpat1 libssl3 yaml openssl tzdata zlib 
+RUN apk update && apk add ca-certificates-bundle wolfi-base libexpat1 libssl3 yaml openssl tzdata zlib libstdc++ bash nodejs
 
 USER cnb
 
