@@ -7,8 +7,21 @@ FROM public.ecr.aws/initializ/builder/build-base:latest
 USER root
 
 # Update package database and install dependencies
-RUN apk update && apk add ca-certificates-bundle wolfi-base libexpat1 libssl3 yaml openssl tzdata zlib libstdc++ bash nodejs
-
+RUN apk update && \
+    apk add \
+        ca-certificates-bundle \
+        wolfi-base \
+        libexpat1 \
+        libssl3 \
+        yaml \
+        openssl \
+        tzdata \
+        zlib \
+        libstdc++ \
+        bash \
+        nodejs \
+        python3
+        
 # Set the npm global prefix to the desired location
 RUN npm config set prefix "/layers/initializ-buildpacks_npm-install/build-modules"
 
