@@ -1,15 +1,26 @@
-#run-base image
-
 # Define the base image
-
 FROM public.ecr.aws/initializ/builder/run-base:latest
 
-# Switch to the non-root user
+# Switch to the root user to install packages
 USER root
 
 # Update package database and install dependencies
-RUN apk update && apk add ca-certificates-bundle wolfi-base libexpat1 libssl3 yaml openssl tzdata zlib libstdc++ bash nodejs
+RUN apk update && \
+    apk add \
+        ca-certificates-bundle \
+        wolfi-base \
+        libexpat1 \
+        libssl3 \
+        yaml \
+        openssl \
+        tzdata \
+        zlib \
+        libstdc++ \
+        bash \
+        nodejs \
+        python3
 
+# Switch back to the non-root user
 USER cnb
 
 # Set required CNB target information
