@@ -22,13 +22,13 @@ accounts:
       gid: 65532
  users:
     - username: cnb
-      uid: 1000
+      uid: 1001
     - username: nonroot
       uid: 65532
  run-as: cnb
 
 environment:
- CNB_USER_ID: 1000
+ CNB_USER_ID: 1001
  CNB_GROUP_ID: 1000
 
 entrypoint:
