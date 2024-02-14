@@ -16,9 +16,7 @@ RUN apk update && \
         tzdata \
         zlib \
         libstdc++ \
-        bash \
-        nodejs \
-        python3
+        bash 
 
 # Switch back to the non-root user
 USER cnb

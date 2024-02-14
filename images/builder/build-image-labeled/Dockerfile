@@ -1,9 +1,7 @@
-# run-base image
-
 # Define the base image
 FROM public.ecr.aws/initializ/builder/build-base:latest
 
-# Switch to the non-root user
+# Switch to the root user to install packages
 USER root
 
 # Update package database and install dependencies
@@ -18,15 +16,7 @@ RUN apk update && \
         tzdata \
         zlib \
         libstdc++ \
-        bash \
-        nodejs \
-        python3
-        
-# Set the npm global prefix to the desired location
-RUN npm config set prefix "/layers/initializ-buildpacks_npm-install/build-modules"
-
-# Set the PATH to include the directory containing globally installed npm packages
-ENV PATH="/layers/initializ-buildpacks_npm-install/build-modules/bin:${PATH}"
+        bash 
 
 # Switch back to the non-root user
 USER cnb
