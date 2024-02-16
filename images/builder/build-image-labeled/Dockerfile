@@ -16,7 +16,8 @@ RUN apk update && \
         tzdata \
         zlib \
         libstdc++ \
-        bash 
+        bash \
+        build-base
 
 # Switch back to the non-root user
 USER cnb
