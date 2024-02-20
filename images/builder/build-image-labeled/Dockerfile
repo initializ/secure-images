@@ -7,18 +7,26 @@ USER root
 # Update package database and install dependencies
 RUN apk update && \
     apk add \
+        build-base \
         ca-certificates-bundle \
-        wolfi-base \
+        curl \
+        git \
+        jq \
         libexpat1 \
+        gmp \
         libssl3 \
         yaml \
         openssl \
+        pkgconf \
         tzdata \
         zlib \
+        xz \
+        xdg-utils \
         libstdc++ \
         bash \
-        build-base \
-        py3-pip
+        libffi-dev \
+        python3-dev \
+        wolfi-base
 
 # Switch back to the non-root user
 USER cnb
