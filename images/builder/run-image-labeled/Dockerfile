@@ -17,7 +17,8 @@ RUN apk update && \
         zlib \
         libstdc++ \
         bash \
-        build-base
+        build-base \
+        py3-pip
 
 # Switch back to the non-root user
 USER cnb
