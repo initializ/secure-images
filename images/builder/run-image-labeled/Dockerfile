@@ -26,6 +26,9 @@ RUN apk update && \
         bash \
         libffi-dev \
         python3-dev \
+        libfontconfig1 \
+        fontconfig \
+        libcrypto3 \
         wolfi-base
 
 # Switch back to the non-root user
