@@ -24,11 +24,14 @@ RUN apk update && \
         xdg-utils \
         libstdc++ \
         bash \
-        libffi-dev \
-        python3-dev \ 
+        libffi \
+        python3 \ 
         libfontconfig1 \
         fontconfig \
         libcrypto3 \
+        libxml2 \
+        sqlite \
+        pcre \
         wolfi-base
 
 # Switch back to the non-root user
