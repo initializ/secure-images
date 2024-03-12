@@ -24,8 +24,8 @@ RUN apk update && \
         xdg-utils \
         libstdc++ \
         bash \
-        libffi \
-        python3 \ 
+        libffi-dev \
+        python3-dev \
         libfontconfig1 \
         fontconfig \
         libcrypto3 \
