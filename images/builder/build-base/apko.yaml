@@ -28,7 +28,8 @@ contents:
     - libcrypto3 
     - libxml2 
     - sqlite 
-    - pcre 
+    - pcre-dev
+    - pcre2 
     - wolfi-base
 
 accounts:
