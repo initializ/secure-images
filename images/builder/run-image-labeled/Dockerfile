@@ -10,6 +10,7 @@ RUN apk update && \
         build-base \
         ca-certificates-bundle \
         curl \
+        py3-pip \
         git \
         jq \
         libexpat1 \
