@@ -6,7 +6,7 @@ USER root
 
 # Update package database and install dependencies
 RUN apk update && \
-    apk del libcrypt1 \
+    apk del libcrypt1 && \
     apk add \
         build-base \
         ca-certificates-bundle \
