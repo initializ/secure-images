@@ -6,6 +6,7 @@ USER root
 
 # Update package database and install dependencies
 RUN apk update && \
+    apk del libcrypt1 \
     apk add \
         build-base \
         ca-certificates-bundle \
@@ -29,7 +30,7 @@ RUN apk update && \
         python3-dev \
         libfontconfig1 \
         fontconfig \
-        libxcrypt-dev \
+        libxcrypt \
         libxml2 \
         sqlite \
         pcre2 \
