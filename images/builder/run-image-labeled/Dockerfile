@@ -31,7 +31,8 @@ RUN apk update && \
         libcrypto3 \
         libxml2 \
         sqlite \
-        pcre \
+        pcre2 \
+        libunwind \
         wolfi-base
 
 # Switch back to the non-root user
