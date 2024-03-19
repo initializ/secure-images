@@ -4,32 +4,11 @@ contents:
   repositories:
     - https://packages.wolfi.dev/os
   packages:
-    - build-base 
     - ca-certificates-bundle 
-    - curl 
-    - git 
-    - jq 
-    - libexpat1 
-    - gmp 
-    - libssl3 
-    - yaml 
-    - openssl 
-    - pkgconf
     - tzdata 
     - zlib 
-    - xz 
-    - xdg-utils 
-    - libstdc++ 
+    - xdg-utils  
     - bash 
-    - libffi-dev 
-    - python3-dev 
-    - libfontconfig1 
-    - fontconfig 
-    - libcrypto3 
-    - libxml2 
-    - sqlite 
-    - pcre-dev
-    - pcre2 
     - wolfi-base
 
 accounts:
