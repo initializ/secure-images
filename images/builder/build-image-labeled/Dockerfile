@@ -13,6 +13,7 @@ RUN apk update && \
         git \
         jq \
         libexpat1 \
+        py3-pip \
         gmp \
         libssl3 \
         yaml \
