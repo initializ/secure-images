@@ -35,6 +35,9 @@ RUN apk update && \
         libunwind \
         wolfi-base
 
+# Create symbolic link for libpcre
+RUN ln -s /usr/lib/libpcre2-8.so.0.12.0 /usr/lib/libpcre.so.3
+
 # Switch back to the non-root user
 USER cnb
 
