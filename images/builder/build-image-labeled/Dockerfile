@@ -29,7 +29,7 @@ RUN apk update && \
         python3-dev \
         libfontconfig1 \
         fontconfig \
-        libcrypto3 \
+        libxcrypt-dev \
         libxml2 \
         sqlite \
         pcre2 \
