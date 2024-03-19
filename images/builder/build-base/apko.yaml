@@ -6,7 +6,7 @@ contents:
   packages:
     - ca-certificates-bundle 
     - tzdata 
-    - zlib 
+    - make
     - xdg-utils  
     - bash 
     - wolfi-base
