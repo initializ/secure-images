@@ -35,6 +35,7 @@ RUN apk update && \
         sqlite \
         pcre \
         libunwind \
+        icu \
         wolfi-base
 
 # Create symbolic link for libpcre
