@@ -42,7 +42,8 @@ RUN apk update && \
 RUN ln -s /usr/lib/libpcre.so.1 /usr/lib/libpcre.so.3
 # Create symbolic link for libicuio.so.70
 RUN ln -s /usr/lib/libicuio.so.74 /usr/lib/libicuio.so.70
-
+# Create symbolic link for libicui18n.so.70
+RUN ln -s /usr/lib/libicui18n.so.74 /usr/lib/libicui18n.so.70
 # Switch back to the non-root user
 USER cnb
 
