@@ -5,10 +5,10 @@ contents:
     - https://packages.wolfi.dev/os
   packages: 
     - ca-certificates-bundle 
-    - tzdata 
-    - make 
+    - tzdata  
     - bash 
     - wolfi-base
+    - openssl
 
 accounts:
  groups:
