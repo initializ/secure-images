@@ -35,18 +35,12 @@ RUN apk update && \
         sqlite \
         pcre \
         libunwind \
-        icu \
+        icu-dev \
         wolfi-base
 
 # Create symbolic link for libpcre
 RUN ln -s /usr/lib/libpcre.so.1 /usr/lib/libpcre.so.3
-# Create symbolic link for all the libicu
-RUN ln -s /usr/lib/libicuio.so.74 /usr/lib/libicuio.so.70
-RUN ln -s /usr/lib/libicui18n.so.74 /usr/lib/libicui18n.so.70
-RUN ln -s /usr/lib/libicudata.so.74 /usr/lib/libicudata.so.70
-RUN ln -s /usr/lib/libicutest.so.74 /usr/lib/libicutest.so.70
-RUN ln -s /usr/lib/libicutu.so.74 /usr/lib/libicutu.so.70
-RUN ln -s /usr/lib/libicuuc.so.74 /usr/lib/libicuuc.so.70
+
 
 # Switch back to the non-root user
 USER cnb
