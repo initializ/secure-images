@@ -4,12 +4,24 @@ contents:
   repositories:
     - https://packages.wolfi.dev/os
   packages:
-    - ca-certificates-bundle 
-    - tzdata 
-    - xdg-utils  
-    - bash 
+    - ca-certificates-bundle
     - wolfi-base
+    - wolfi-baselayout
+    - tzdata
+    - buildkitd
+    - curl
+    - git
+    - jq
+    - libexpat1
+    - gmp
+    - libssl3
+    - openssl-dev
+    - yaml
+    - zlib-dev 
     - openssl
+    - pkgconf
+    - xz 
+    - libstdc++
 
 accounts:
  groups:
