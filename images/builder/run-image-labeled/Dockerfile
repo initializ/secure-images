@@ -35,11 +35,13 @@ RUN apk update && \
         sqlite \
         pcre \
         libunwind \
-        icu-dev \
+        icu \
         wolfi-base
 
 # Create symbolic link for libpcre
 RUN ln -s /usr/lib/libpcre.so.1 /usr/lib/libpcre.so.3
+RUN export LD_LIBRARY_PATH=/usr/lib:$LD_LIBRARY_PATH
+
 
 
 # Switch back to the non-root user
