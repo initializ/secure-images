@@ -47,7 +47,7 @@ RUN ln -s /usr/lib/libicui18n.so.70 /usr/lib/libicui18n.so.70
 # Create symbolic link for libicuuc.so.70
 RUN ln -s /usr/lib/libicuuc.so.70 /usr/lib/libicuuc.so.70
 # Create symbolic link for libicuio.so.70
-RUN ln -s /usr/lib/libicuio.so.70 /usr/lib/libicuio.so.74
+RUN ln -s /usr/lib/libicuio.so.70 /usr/lib/libicuio.so.74.2
 
 
 
