@@ -1,5 +1,5 @@
 # Define the base image
-FROM intz:run
+FROM initz/Run:latest
 
 # Switch to the root user to install packages
 USER root
