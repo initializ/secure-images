@@ -3,25 +3,13 @@ contents:
     - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
   repositories:
     - https://packages.wolfi.dev/os
-  packages: 
-    - ca-certificates-bundle
+  packages:
+    - ca-certificates-bundle 
+    - tzdata 
+    - zlib 
+    - xdg-utils  
+    - bash 
     - wolfi-base
-    - wolfi-baselayout
-    - tzdata
-    - buildkitd
-    - curl
-    - git
-    - jq
-    - libexpat1
-    - gmp
-    - libssl3
-    - openssl-dev
-    - yaml
-    - zlib-dev 
-    - openssl
-    - pkgconf
-    - xz 
-    - libstdc++
 
 accounts:
  groups:
@@ -45,4 +33,3 @@ entrypoint:
 
 archs:
  - x86_64
-
