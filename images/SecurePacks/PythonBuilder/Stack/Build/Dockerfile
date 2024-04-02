@@ -1,5 +1,5 @@
 # Define the base image
-FROM intzpython:build
+FROM initializbuildpacks/python-build-base:latest
 
 # Switch to the root user to install packages
 USER root
